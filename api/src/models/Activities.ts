@@ -1,20 +1,20 @@
 import { model, Schema } from "mongoose";
 
 interface IActivities{
-    tittle: string,
-    dateEnd: String,
-    description: string,
+    title: String,
+    dateEnd: Date,
+    description: String,
     status: "Active"| "Pending",
-    idUser: Schema.Types.ObjectId | string
+    idUser: Schema.Types.ObjectId | String
 }
 
 const ActivitiSchema = new Schema<IActivities>({
-    tittle: {
+    title: {
         type: String,
         required: true
     },
     dateEnd:{
-        type: String,
+        type: Date,
         required: true
     },
     description:{

@@ -3,13 +3,13 @@ import "./App.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-// Define el tipo para las tareas
+
 type Task = {
   _id: string;
   title: string;
   dateEnd: string;
   description: string;
-  status: "pending" | "completed";
+  status: "Pending" | "Active";
 };
 
 export function Home() {
@@ -18,7 +18,7 @@ export function Home() {
   const [description, setDescription] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // Este id debe obtenerse dinámicamente según el usuario autenticado
+  
   const idUser = "6744e5671b4fa961efc34a81"; // Ejemplo estático
 
   const handleTasks = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,19 +78,22 @@ export function Home() {
       </form>
 
       <ul className="todo-list">
-        {tasks.map((task) => (
+      {tasks.map((task) =>
+        task && task._id && task.status ? (
           <li
             key={task._id}
-            className={`todo-item ${task.status === "completed" ? "completed" : ""}`}
+            className={`todo-item ${task.status === "Active" ? "Active" : ""}`}
           >
             <label>
               <input
                 type="checkbox"
-                checked={task.status === "completed"}
+                checked={task.status === "Active"}
                 onChange={() =>
                   setTasks(
                     tasks.map((t) =>
-                      t._id === task._id ? { ...t, status: t.status === "pending" ? "completed" : "pending" } : t
+                      t._id === task._id
+                        ? { ...t, status: t.status === "Pending" ? "Active" : "Pending" }
+                        : t
                     )
                   )
                 }
@@ -106,8 +109,10 @@ export function Home() {
               Delete
             </button>
           </li>
-        ))}
-      </ul>
+        ) : null // Si la tarea es inválida, simplemente no la renderiza
+      )}
+    </ul>
+    
     </div>
   );
 }
