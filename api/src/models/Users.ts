@@ -3,7 +3,7 @@ interface Iuser{
     name:string,
     email: string,
     password:string,
-    rol:string
+    rol: "Client"|"Admin"
 }
 const UserSchema = new Schema<Iuser>({
     name:{
@@ -20,7 +20,7 @@ const UserSchema = new Schema<Iuser>({
     },
     rol:{
         type: String,
-        required: true
+        enum: ["Client","Admin"]
     }
 },{timestamps:true});
 

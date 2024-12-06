@@ -19,7 +19,7 @@ export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   
-  const idUser = "6744e5671b4fa961efc34a81"; // Ejemplo estático
+  const idUser = "6744e5671b4fa961efc34a81"; 
 
   const handleTasks = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

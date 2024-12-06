@@ -42,5 +42,31 @@ export default {
             res.status(500).json({msg:"Ocurrio un error al Crear la tarea"});
             return;
         }
+    },
+    getActiv: async (req:Request, res:Response) =>{
+        try {
+            const { idUser } = req.query;
+
+            let activities;
+            if (idUser) {
+                // Validar que el usuario existe
+                const user = await UserModel.findById(idUser);
+                if (!user) {
+                    res.status(400).json({ msg: "El usuario no existe" });
+                    return;
+                }
+
+                // Obtener actividades del usuario
+                activities = await ActivitiModel.find({ idUser });
+            } else {
+                // Obtener todas las actividades
+                activities = await ActivitiModel.find();
+            }
+
+            res.status(200).json({ msg: "Actividades obtenidas con éxito", activities });
+        } catch (error) {
+            console.error("Error al obtener actividades", error);
+            res.status(500).json({ msg: "Ocurrió un error al obtener las actividades" });
+        }
     }
 }
