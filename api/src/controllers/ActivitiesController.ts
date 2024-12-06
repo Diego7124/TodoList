@@ -45,21 +45,20 @@ export default {
     },
     getActiv: async (req:Request, res:Response) =>{
         try {
-            const { idUser } = req.query;
+            const  {idUser}  = req.body;
 
             let activities;
             if (idUser) {
-                // Validar que el usuario existe
+                
                 const user = await UserModel.findById(idUser);
                 if (!user) {
                     res.status(400).json({ msg: "El usuario no existe" });
                     return;
                 }
 
-                // Obtener actividades del usuario
                 activities = await ActivitiModel.find({ idUser });
             } else {
-                // Obtener todas las actividades
+              
                 activities = await ActivitiModel.find();
             }
 
@@ -68,5 +67,68 @@ export default {
             console.error("Error al obtener actividades", error);
             res.status(500).json({ msg: "Ocurrió un error al obtener las actividades" });
         }
+    },
+    deleteActiv: async (req: Request, res: Response) => {
+        try {
+            
+            const { id } = req.body;
+    
+        
+            if (!id) {
+                res.status(400).json({ msg: "El ID de la actividad es requerido para eliminarla" });
+                return
+            }
+    
+           
+            if (!/^[0-9a-fA-F]{24}$/.test(String(id))) {
+                res.status(400).json({ msg: "El ID proporcionado no es válido" });
+                return
+            }
+    
+            
+            const activity = await ActivitiModel.findById(id);
+            if (!activity) {
+                res.status(404).json({ msg: "La actividad no existe o ya fue eliminada" });
+                return
+            }
+    
+            
+            await ActivitiModel.deleteOne({ _id: id });
+    
+           
+            res.status(200).json({ msg: "Actividad eliminada con éxito" });
+        } catch (error) {
+            console.error("Error al eliminar la actividad", error);
+            res.status(500).json({ msg: "Ocurrió un error al eliminar la actividad" });
+            return
+        }
+    },
+    UpdateActivi: async (req:Request, res:Response) =>{
+        try {
+            const { id, title, dateEnd, description, status, idUser } = req.body;
+            
+           if (!id || !title || !dateEnd || !description || !status || !idUser) {
+             res.status(400).json({ message: "Todos los campos son requeridos." });
+             return;
+        }
+        
+
+        const UpdatedActivity = await ActivitiModel.findByIdAndUpdate(
+            id,{title, dateEnd, description, status, idUser},
+            {new:true}
+        );
+        if(!UpdatedActivity){
+            res.status(404).json({msg:"No se pudo encontrar la actividad"})
+            return;
+        }
+
+        res.status(200).json({ message: "Actividad actualizada exitosamente.", data: UpdatedActivity })
+        } catch (error) {
+            console.log("Error al actualizar la actividad:", error);
+        res.status(500).json({ message: "Error interno del servidor." });
+        return;
+        }
     }
+   
+    
 }

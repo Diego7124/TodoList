@@ -44,7 +44,7 @@ export function Home() {
       setTasks([...tasks, data.task]); // Agregar la tarea creada al estado
       Swal.fire(data.msg, "", "success");
 
-      // Limpiar los campos después de guardar
+      
       setTitle("");
       setDateEnd("");
       setDescription("");
@@ -109,7 +109,7 @@ export function Home() {
               Delete
             </button>
           </li>
-        ) : null // Si la tarea es inválida, simplemente no la renderiza
+        ) : null 
       )}
     </ul>
     

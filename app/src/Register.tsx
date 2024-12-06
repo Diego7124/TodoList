@@ -11,7 +11,7 @@ export const SignUp = () => {
   const [rol, setRol] = useState<string>("Client") ;
   const navigate = useNavigate();
 
-  const handleSignUp = async (e: React.FormEvent): Promise<void> => {
+  const handleSignUp = async (e:any) => {
     e.preventDefault();
     setRol("Client")
 

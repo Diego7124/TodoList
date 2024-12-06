@@ -1,9 +1,9 @@
 import {model, Schema} from 'mongoose'
 interface Iuser{
-    name:string,
-    email: string,
-    password:string,
-    rol: "Client"|"Admin"
+    name:String,
+    email: String,
+    password:String,
+    rol: String
 }
 const UserSchema = new Schema<Iuser>({
     name:{
@@ -20,7 +20,7 @@ const UserSchema = new Schema<Iuser>({
     },
     rol:{
         type: String,
-        enum: ["Client","Admin"]
+        default: "Client"
     }
 },{timestamps:true});
 
