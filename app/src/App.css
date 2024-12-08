@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.tasks-container {
+  padding: 20px;
+}
+
+.tasks-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}

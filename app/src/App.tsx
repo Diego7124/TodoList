@@ -6,6 +6,7 @@ import {Home} from '../src/Home'
 import Register from '../src/Register'
 
 
+
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Register />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
+        
       </Routes>
     </Router>
   );

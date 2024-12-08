@@ -19,9 +19,14 @@ app.post("/user/sign-in", UsersController.signIn);
 
 // Ruta para crear la tarea
 app.post("/createtask", ActivitiesController.create);
-app.get("/gettasks", ActivitiesController.getActiv);
-app.delete("/deletetasks", ActivitiesController.deleteActiv);
-app.put("/UpdateTasks", ActivitiesController.UpdateActivi);
 
+// Ruta para obtener tareas
+app.get("/gettasks", ActivitiesController.getActiv);
+
+// Ruta para eliminar tareas
+app.delete("/deletetasks/:id", ActivitiesController.deleteActiv);
+
+// Ruta para actualizar tareas
+app.put("/updatetasks/:id", ActivitiesController.UpdateActivi);
 
 export default app;

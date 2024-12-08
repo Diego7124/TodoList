@@ -11,7 +11,7 @@ export const SignUp = () => {
   const [rol, setRol] = useState<string>("Client") ;
   const navigate = useNavigate();
 
-  const handleSignUp = async (e:any) => {
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setRol("Client")
 
@@ -28,6 +28,10 @@ export const SignUp = () => {
       console.log(error.message);
       Swal.fire('Error', error.response?.data?.msg || 'Ocurrió un error al registrar el usuario.', 'error');
     }
+  };
+
+  const goToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -73,6 +77,7 @@ export const SignUp = () => {
 
           <button type="submit" className="login-btn">Registrar</button>
         </form>
+        <button type="button" className="login-btn" onClick={goToLogin}>Ir a Login</button>
       </div>
     </div>
   )
