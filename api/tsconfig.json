@@ -7,7 +7,7 @@
     "noImplicitAny": false,
     "outDir": "./build", //Sera la salida para produccion.
     "rootDir": "./src", //Este sera el punto de entrada de typescript.
-    "strict": true,
+    "strict": false,
     "target": "ESNext"
   },
   "emitDecoratorMetadata": true,

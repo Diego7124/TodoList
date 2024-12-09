@@ -80,29 +80,44 @@ export default {
             res.status(500).json({ msg: "Ocurrió un error al eliminar la actividad" });
         }
     },
-
     UpdateActivi: async (req: Request, res: Response) => {
         try {
-            const { id, title, dateEnd, description, status, idUser } = req.body;
-
-            if (!id || !title || !dateEnd || !description || !status || !idUser) {
-                res.status(400).json({ message: "Todos los campos son requeridos." });
-                return;
+            const { status } = req.body;
+            const { id } = req.params; // Obtiene el ID desde los parámetros de la URL
+    
+            if (!id || !status) {
+                res.status(400).json({ message: "ID y estado son obligatorios." });
+                return 
             }
-
+    
+            // Valida que el status sea válido
+            if (!["Active", "Pending", "Completed"].includes(status)) {
+                res.status(400).json({ message: "Estado inválido." });
+                return
+            }
+    
+            // Actualiza solo el estado
             const updatedActivity = await ActivitiModel.findByIdAndUpdate(
-                id, { title, dateEnd, description, status, idUser },
+                id,
+                { status },
                 { new: true }
             );
+    
             if (!updatedActivity) {
-                res.status(404).json({ msg: "No se pudo encontrar la actividad" });
+                res.status(404).json({ message: "No se encontró la actividad." });
                 return;
             }
-
-            res.status(200).json({ message: "Actividad actualizada exitosamente.", data: updatedActivity });
+    
+            res.status(200).json({
+                message: "Actividad actualizada exitosamente.",
+                data: updatedActivity,
+            });
         } catch (error) {
             console.log("Error al actualizar la actividad:", error);
             res.status(500).json({ message: "Error interno del servidor." });
         }
     }
+    
+    
+    
 };

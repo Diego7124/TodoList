@@ -1,54 +1,136 @@
-.App {
+/* Estilos generales de la aplicación */
+.home-app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+h1.title {
   text-align: center;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Formulario */
+.todo-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-form input,
+.todo-form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.todo-form button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
   color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-form button:hover {
+  background-color: #45a049;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Botones de navegación */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.tasks-container {
-  padding: 20px;
+.navigation-buttons button {
+  padding: 10px 20px;
+  background-color: #2e6cd8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 48%;
 }
 
-.tasks-list {
-  list-style: none;
+.navigation-buttons button:hover {
+  background-color: #1a57a2;
+}
+
+/* Lista de tareas */
+.todo-list {
+  list-style-type: none;
   padding: 0;
 }
 
-.task-item {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
+.todo-item {
+  background-color: #ffffff;
+  padding: 15px;
   margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.todo-item strong {
+  font-size: 18px;
+}
+
+.todo-item p {
+  margin-top: 5px;
+  color: #555;
+}
+
+/* Estilos para los botones de completar y eliminar */
+.todo-item button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Botón de completar */
+.todo-item button:nth-of-type(1) {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.todo-item button:nth-of-type(1):hover {
+  background-color: #45a049;
+}
+
+/* Botón de eliminar */
+.todo-item button:nth-of-type(2) {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.todo-item button:nth-of-type(2):hover {
+  background-color: #c0392b;
+}
+
+/* Estilos para botones de navegación a Completed y Pending */
+.navigation-buttons button:first-of-type {
+  background-color: #3498db;
+}
+
+.navigation-buttons button:first-of-type:hover {
+  background-color: #2980b9;
+}
+
+.navigation-buttons button:last-of-type {
+  background-color: #f39c12;
+}
+
+.navigation-buttons button:last-of-type:hover {
+  background-color: #e67e22;
 }

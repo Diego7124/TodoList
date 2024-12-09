@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import {Login} from '../src/Login';
 import {Home} from '../src/Home'
 import Register from '../src/Register'
+import Completed from '../src/Completed'
+import Pending from '../src/Pending'
 
 
 
@@ -14,6 +16,8 @@ function App() {
         <Route path="/" element={<Register />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Completed" element={<Completed />} />
+        <Route path="/Pending" element={<Pending />} />
         
       </Routes>
     </Router>

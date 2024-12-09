@@ -4,7 +4,7 @@ interface IActivities{
     title: String,
     dateEnd: Date,
     description: String,
-    status: "Active"| "Pending",
+    status: "Active"| "Pending"|"Completed",
     idUser: Schema.Types.ObjectId | String
 }
 
@@ -24,7 +24,7 @@ const ActivitiSchema = new Schema<IActivities>({
     status:{
         type: String,
         required: true,
-        enum:["Active", "Pending"]
+        enum:["Active", "Pending", "Completed"]
     },
     idUser:{
         type:Schema.Types.ObjectId || String,
